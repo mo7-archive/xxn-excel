@@ -5,7 +5,7 @@ import Log from '../utils/logger.ts';
 
 const logger = new Log({ path: './logs' });
 
-const filePath = 'D:/mo7-project/xxn-project/数据汇总回传2025.8.26-mo7.xlsx';
+const filePath = 'D:/mo7-project/xxn-project/数据汇总回传2025.8.26-墨七.xlsx';
 
 handleExcel(filePath);
 
@@ -74,6 +74,15 @@ function handleExcel(filePath: string): void {
         }
       });
     });
+
+    // 把jsonData 写入新的Excel文件
+    const newWorksheet = XLSX.utils.json_to_sheet(jsonData);
+    const newWorkbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(newWorkbook, newWorksheet, sheetName);
+
+    const newFilePath = filePath.replace('.xlsx', `_modified_${sheetName}.xlsx`);
+    XLSX.writeFile(newWorkbook, newFilePath);
+    logger.info(`已生成新的Excel文件：${newFilePath}`);
 
     logger.info(`\n该工作表共有 ${jsonData.length} 行数据`);
   });
