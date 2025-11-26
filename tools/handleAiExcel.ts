@@ -1,7 +1,7 @@
-// 正确的ES模块导入方式
 import XLSX from 'xlsx';
 import * as fs from 'fs';
-import Log from '../utils/logger';
+
+import Log from '../utils/logger.ts';
 
 const logger = new Log({ path: './logs' });
 
@@ -43,17 +43,22 @@ function handleExcel(filePath: string): void {
 
     // 获取字段名称（第一行数据的键）
     const headers = Object.keys(jsonData[0]);
-    logger.info('字段名称：');
     headers.forEach((header, i) => {
       logger.info(`${i + 1}. ${header}`);
     });
 
     logger.info('\n数据内容：');
     // 遍历并打印数据内容
+    let key = '';
     jsonData.forEach((row, rowIndex) => {
-      logger.info(`\n行 ${rowIndex + 1}:`);
+      logger.info(`行:${rowIndex + 1}:`);
       headers.forEach((header) => {
-        logger.info(`  ${header}: ${row[header]}`);
+        const val = row[header];
+        if (val == '沟通情况') {
+          key = header;
+        } else if (header == key && val) {
+          logger.info(`===发送请求:${val}`);
+        }
       });
     });
 
