@@ -50,14 +50,24 @@ function handleExcel(filePath: string): void {
     logger.info('\n数据内容：');
     // 遍历并打印数据内容
     let key = '';
+    let insertKey = '';
     jsonData.forEach((row, rowIndex) => {
       logger.info(`行:${rowIndex + 1}:`);
+      let result = '';
       headers.forEach((header) => {
         const val = row[header];
+
         if (val == '沟通情况') {
           key = header;
         } else if (header == key && val) {
           logger.info(`===发送请求:${val}`);
+          result = `AI分析结果:${val}`;
+        }
+
+        if (val == '意向类型') {
+          insertKey = header;
+        } else if (header == insertKey && result) {
+          logger.info(`---插入AI分析-header:${header}-index:${rowIndex}-result:${result}`);
         }
       });
     });
