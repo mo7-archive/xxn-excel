@@ -1,0 +1,39 @@
+{
+  "name": "mo7_obsidian_data",
+  "private": true,
+  "version": "0.0.1",
+  "description": "墨七的 Obsidian 笔记仓库。",
+  "license": "MIT",
+  "author": "墨七",
+  "type": "module",
+  "engine-strict": true,
+  "engines": {
+    "node": ">=24",
+    "npm": ">=11"
+  },
+  "scripts": {
+    "git-sync": "ts-node script/git_sync.ts",
+    "re-update": "del-cli ./node_modules ./package-lock.json && npm update"
+  },
+  "dependencies": {
+    "axios": "^1.13.2",
+    "cheerio": "^1.1.2",
+    "dayjs": "^1.11.19",
+    "radash": "^12.1.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.1",
+    "@types/node": "^24.10.1",
+    "@vue/eslint-config-prettier": "^10.2.0",
+    "@vue/eslint-config-typescript": "^14.6.0",
+    "eslint": "^9.39.1",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-vue": "^10.6.1",
+    "fs-extra": "^11.3.2",
+    "globals": "^16.5.0",
+    "jiti": "^2.6.1",
+    "prettier": "^3.6.2",
+    "shelljs": "^0.10.0",
+    "ts-node": "^10.9.2"
+  }
+}

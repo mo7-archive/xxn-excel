@@ -1,0 +1,23 @@
+{
+  "explorer.fileNesting.enabled": true,
+  "explorer.fileNesting.patterns": {
+    ".gitignore": ".gitattributes, .gitmodules, .stignore, .nomedia",
+    "go.mod": "go.sum",
+    "README.md": "AGENTS.md",
+    "package.json": "*.json, *.yaml, *.yml, go.mod, config.*, *config.ts, eslint*, .eslint*, .prettier*, *.d.ts, *lock, *json.md5, .browserslistrc"
+  },
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "explicit"
+  },
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.tabSize": 2,
+  "eslint.enable": true,
+  "files.eol": "\n",
+  "files.exclude": {
+    "node_modules": true, // 隐藏文件夹
+  },
+  "cSpell.words": [
+    
+  ]
+}
