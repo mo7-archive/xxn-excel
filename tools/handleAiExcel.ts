@@ -51,6 +51,7 @@ function handleExcel(filePath: string): void {
     // 遍历并打印数据内容
     let key = '';
     let insertKey = '';
+
     jsonData.forEach((row, rowIndex) => {
       logger.info(`行:${rowIndex + 1}:`);
       let result = '';
@@ -68,6 +69,8 @@ function handleExcel(filePath: string): void {
           insertKey = header;
         } else if (header == insertKey && result) {
           logger.info(`---插入AI分析-header:${header}-index:${rowIndex}-result:${result}`);
+          // 在对应行插入AI分析结果
+          jsonData[rowIndex][header] = result;
         }
       });
     });
